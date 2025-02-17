@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ATL 1st Peach Padel Tournament 2025</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Local background image */
+      body {
+        background: url("padel-court.jpg") no-repeat center center fixed;
+        background-size: cover;
+      }
+
+      /* Slight overlay for readability */
+      .overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+      }
+
+      /* Registration Card Styling */
+      .registration-card {
+        background-color: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .card-header {
+        background-color: #90c358; /* Lighter green accent */
+        color: #fff;
+        text-align: center;
+        padding: 1.5rem 1rem;
+      }
+
+      .card-header h2 {
+        margin: 0;
+        font-size: 1.75rem;
+      }
+
+      .card-body {
+        padding: 2rem;
+      }
+
+      /* Labels and inputs for a cleaner look */
+      .form-label {
+        font-weight: 500;
+      }
+
+      /* Button using the accent color */
+      .btn-accent {
+        background-color: #90c358;
+        border: none;
+      }
+      .btn-accent:hover {
+        background-color: #7cb44b; /* Slightly darker on hover */
+      }
+
+      /* Modern bullet styling for details */
+      .tournament-details li {
+        margin-bottom: 0.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-6">
+            <div class="card registration-card">
+              <div class="card-header">
+                <h2>ATL 1st Peach Padel Tournament 2025</h2>
+                <p class="mb-0">
+                  Show your skills at our first padel tournament this year!
+                </p>
+              </div>
+              <div class="card-body">
+                <form id="registration-form">
+                  <!-- Team Name -->
+                  <div class="mb-3">
+                    <label for="teamName" class="form-label">Team Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="teamName"
+                      name="teamName"
+                      required
+                    />
+                  </div>
+                  <!-- Player 1 -->
+                  <div class="mb-3">
+                    <label for="player1" class="form-label">Player 1</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="player1"
+                      name="player1"
+                      required
+                    />
+                  </div>
+                  <!-- Player 2 -->
+                  <div class="mb-3">
+                    <label for="player2" class="form-label">Player 2</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="player2"
+                      name="player2"
+                      required
+                    />
+                  </div>
+                  <!-- Add more players if needed -->
+
+                  <!-- Tournament Details -->
+                  <div class="mt-4">
+                    <h5 class="fw-bold">Tournament Details</h5>
+                    <ul class="list-unstyled tournament-details">
+                      <li><strong>Date:</strong> March 1st, 2025 @ 12PM</li>
+                      <li><strong>Location:</strong> PATL, 3110 Presidential Dr, Atlanta, GA 30340</li>
+                      <li><strong>Prize Pool:</strong> $1,000</li>
+                      <li><strong>Registration Fee:</strong> $60 / person</li>
+                    </ul>
+                  </div>
+
+                  <!-- Register & Pay -->
+                  <div class="d-grid mt-4">
+                    <!-- Replace YOUR_STRIPE_PAYMENT_LINK with your actual Stripe payment URL -->
+                    <a
+                      href="YOUR_STRIPE_PAYMENT_LINK"
+                      target="_blank"
+                      class="btn btn-accent btn-lg text-white"
+                    >
+                      Register & Pay
+                    </a>
+                  </div>
+                </form>
+              </div> <!-- end card-body -->
+            </div> <!-- end card -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS (optional, for interactivity) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    ></script>
+  </body>
+</html>
