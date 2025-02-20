@@ -77,34 +77,33 @@
                 <form id="registration-form">
                   <!-- Team Name (Required) -->
                   <div class="mb-3">
-                    <label for="teamName" class="form-label">Team Name <span class="text-danger">*</span></label>
+                    <label for="teamName" class="form-label">
+                      Team Name <span class="text-danger">*</span>
+                    </label>
                     <input type="text" class="form-control" id="teamName" name="teamName" required />
                   </div>
-                  
                   <!-- Email (Required) -->
                   <div class="mb-3">
-                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                    <label for="email" class="form-label">
+                      Email <span class="text-danger">*</span>
+                    </label>
                     <input type="email" class="form-control" id="email" name="email" required />
                   </div>
-                  
                   <!-- Phone Number (Optional) -->
                   <div class="mb-3">
                     <label for="phone" class="form-label">Phone Number</label>
                     <input type="tel" class="form-control" id="phone" name="phone" placeholder="e.g., 123-456-7890" />
                   </div>
-                  
                   <!-- Player 1 (Optional) -->
                   <div class="mb-3">
                     <label for="player1" class="form-label">Player 1</label>
                     <input type="text" class="form-control" id="player1" name="player1" />
                   </div>
-                  
                   <!-- Player 2 (Optional) -->
                   <div class="mb-3">
                     <label for="player2" class="form-label">Player 2</label>
                     <input type="text" class="form-control" id="player2" name="player2" />
                   </div>
-
                   <!-- Tournament Details -->
                   <div class="mt-4">
                     <h5 class="fw-bold">Tournament Details</h5>
@@ -115,7 +114,6 @@
                       <li><strong>Registration Fee:</strong> $60 / person</li>
                     </ul>
                   </div>
-
                   <!-- Register & Pay Buttons -->
                   <div class="d-grid mt-4">
                     <!-- Gray, non-clickable button (always visible) -->
@@ -126,7 +124,6 @@
                     >
                       Register & Pay
                     </button>
-                    
                     <!-- Green, clickable button (hidden by default) -->
                     <button
                       type="submit"
@@ -153,7 +150,7 @@
       const disabledButton = document.getElementById('disabledButton');
       const activeButton = document.getElementById('activeButton');
 
-      // Check required fields and toggle button visibility
+      // Toggle button visibility based on required fields
       function validateForm() {
         const teamName = teamNameInput.value.trim();
         const email = emailInput.value.trim();
@@ -171,7 +168,7 @@
 
       // Handle form submission
       form.addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault();
 
         const teamName = teamNameInput.value.trim();
         const email = emailInput.value.trim();
@@ -192,11 +189,13 @@
         fetch('https://script.google.com/macros/s/AKfycbyfFE6VLhQgIvgCrhY7W5bgrM9-vABDC9gdC1lqt6AlwKNbvDr5-U7qASP-jSYxWwE/exec', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
-          redirect: 'manual'  // Prevent automatic redirect following
+          body: JSON.stringify(formData)
+          // No need for "redirect: 'manual'"—we'll simply ignore the response body
         })
-          .then((response) => {
-            // No need to parse the unexpected response; assume success if no network error
+          .then(response => response.text()) // get the response as text (even if it's HTML)
+          .then(text => {
+            console.log('Response received:', text);
+            // Since your row is already appended, just redirect to Stripe
             window.location.href = 'https://buy.stripe.com/6oEg28fh2c1T7uMbIJ';
           })
           .catch((error) => {
