@@ -131,6 +131,7 @@
         // Validate required fields
         const teamName = document.getElementById('teamName').value.trim();
         const email = document.getElementById('email').value.trim();
+        console.log('Team Name:', teamName, 'Email:', email);
         if (!teamName || !email) {
           alert('Please fill in all required fields (Team Name and Email).');
           return;
