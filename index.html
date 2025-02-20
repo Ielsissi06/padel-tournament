@@ -51,6 +51,11 @@
       .btn-accent:hover {
         background-color: #7cb44b;
       }
+      .btn-disabled {
+        background-color: #aaa;
+        border: none;
+        cursor: not-allowed;
+      }
       .tournament-details li {
         margin-bottom: 0.25rem;
       }
@@ -111,7 +116,8 @@
 
                   <!-- Register & Pay Button -->
                   <div class="d-grid mt-4">
-                    <button type="submit" class="btn btn-accent btn-lg text-white">
+                    <!-- Initially disabled -->
+                    <button type="submit" id="submitButton" class="btn btn-disabled btn-lg text-white" disabled>
                       Register & Pay
                     </button>
                   </div>
@@ -125,13 +131,38 @@
 
     <!-- Client-Side JavaScript -->
     <script>
-      document.getElementById('registration-form').addEventListener('submit', function(e) {
+      // Cache references to the form and required input fields
+      const form = document.getElementById('registration-form');
+      const teamNameInput = document.getElementById('teamName');
+      const emailInput = document.getElementById('email');
+      const submitButton = document.getElementById('submitButton');
+
+      // Function to check if required fields are filled
+      function validateForm() {
+        const teamName = teamNameInput.value.trim();
+        const email = emailInput.value.trim();
+        // Enable the button only if both fields have values
+        if (teamName && email) {
+          submitButton.disabled = false;
+          submitButton.classList.remove('btn-disabled');
+          submitButton.classList.add('btn-accent');
+        } else {
+          submitButton.disabled = true;
+          submitButton.classList.remove('btn-accent');
+          submitButton.classList.add('btn-disabled');
+        }
+      }
+
+      // Attach input event listeners to required fields
+      teamNameInput.addEventListener('input', validateForm);
+      emailInput.addEventListener('input', validateForm);
+
+      form.addEventListener('submit', function(e) {
         e.preventDefault(); // Prevent default form submission
         
-        // Validate required fields
-        const teamName = document.getElementById('teamName').value.trim();
-        const email = document.getElementById('email').value.trim();
-        console.log('Team Name:', teamName, 'Email:', email);
+        // Validate required fields again as a safety net
+        const teamName = teamNameInput.value.trim();
+        const email = emailInput.value.trim();
         if (!teamName || !email) {
           alert('Please fill in all required fields (Team Name and Email).');
           return;
