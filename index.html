@@ -233,24 +233,15 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData),
         })
-          .then((response) => {
-            console.log('Response Status:', response.status);
-            console.log('Response Headers:', response.headers);
-            // Optionally log the entire response object for more insights.
-            if (response.ok) {
-              return response.json(); // if your server sends back JSON
-            } else {
-              throw new Error('Server responded with error status.');
-            }
-          })
-          .then((data) => {
-            console.log('Server response data:', data);
-            // After form data is recorded, redirect to Stripe payment
+          .then(response => response.json())
+          .then(data => {
+            console.log('Server responded with:', data);
+            // Unconditionally redirect to Stripe
             window.location.href = 'https://buy.stripe.com/6oEg28fh2c1T7uMbIJ';
           })
-          .catch((error) => {
-            console.error('Error:', error);
-            alert('Data submission failed. Please try again.');
+          .catch(error => {
+            console.error('Fetch error:', error);
+            alert('An error occurred. Please try again.');
           });
       });
     </script>
