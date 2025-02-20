@@ -77,64 +77,32 @@
                 <form id="registration-form">
                   <!-- Team Name (Required) -->
                   <div class="mb-3">
-                    <label for="teamName" class="form-label"
-                      >Team Name <span class="text-danger">*</span></label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="teamName"
-                      name="teamName"
-                      required
-                    />
+                    <label for="teamName" class="form-label">Team Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="teamName" name="teamName" required />
                   </div>
-
+                  
                   <!-- Email (Required) -->
                   <div class="mb-3">
-                    <label for="email" class="form-label"
-                      >Email <span class="text-danger">*</span></label
-                    >
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="email"
-                      name="email"
-                      required
-                    />
+                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="email" name="email" required />
                   </div>
-
+                  
                   <!-- Phone Number (Optional) -->
                   <div class="mb-3">
                     <label for="phone" class="form-label">Phone Number</label>
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="phone"
-                      name="phone"
-                      placeholder="e.g., 123-456-7890"
-                    />
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="e.g., 123-456-7890" />
                   </div>
-
+                  
                   <!-- Player 1 (Optional) -->
                   <div class="mb-3">
                     <label for="player1" class="form-label">Player 1</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="player1"
-                      name="player1"
-                    />
+                    <input type="text" class="form-control" id="player1" name="player1" />
                   </div>
-
+                  
                   <!-- Player 2 (Optional) -->
                   <div class="mb-3">
                     <label for="player2" class="form-label">Player 2</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="player2"
-                      name="player2"
-                    />
+                    <input type="text" class="form-control" id="player2" name="player2" />
                   </div>
 
                   <!-- Tournament Details -->
@@ -158,7 +126,7 @@
                     >
                       Register & Pay
                     </button>
-
+                    
                     <!-- Green, clickable button (hidden by default) -->
                     <button
                       type="submit"
@@ -189,19 +157,15 @@
       function validateForm() {
         const teamName = teamNameInput.value.trim();
         const email = emailInput.value.trim();
-
-        // If both fields have values, hide the gray button & show the green one
         if (teamName && email) {
           disabledButton.style.display = 'none';
           activeButton.style.display = 'block';
         } else {
-          // Otherwise, show the gray button & hide the green one
           disabledButton.style.display = 'block';
           activeButton.style.display = 'none';
         }
       }
 
-      // Listen for user input on required fields
       teamNameInput.addEventListener('input', validateForm);
       emailInput.addEventListener('input', validateForm);
 
@@ -209,45 +173,39 @@
       form.addEventListener('submit', function (e) {
         e.preventDefault(); // Prevent default form submission
 
-        // Final check in case user manipulated the DOM
         const teamName = teamNameInput.value.trim();
         const email = emailInput.value.trim();
         if (!teamName || !email) {
           alert('Please fill in all required fields (Team Name and Email).');
           return;
         }
-
-        // Prepare data to send
+        
         const formData = {
           source: 'form',
           teamName: teamName,
           email: email,
           phone: document.getElementById('phone').value.trim(),
           player1: document.getElementById('player1').value.trim(),
-          player2: document.getElementById('player2').value.trim(),
+          player2: document.getElementById('player2').value.trim()
         };
 
-        // IMPORTANT: Replace with your *published* Web App URL from Google Apps Script
-        fetch('https://script.google.com/macros/s/AKfycbyfFE6VLhQgIvgCrhY7W5bgrM9-vABDC9gdC1lqt6AlwKNbvDr5-U7qASP-jSYxWwE/exec', {
+        fetch('https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData),
+          redirect: 'manual'  // Prevent automatic redirect following
         })
           .then((response) => {
-            if (response.ok) {
-              // After form data is recorded, redirect to Stripe payment
-              window.location.href = 'https://buy.stripe.com/6oEg28fh2c1T7uMbIJ';
-            } else {
-              alert('Data submission failed. Please try again.');
-            }
+            // No need to parse the unexpected response; assume success if no network error
+            window.location.href = 'https://buy.stripe.com/6oEg28fh2c1T7uMbIJ';
           })
           .catch((error) => {
             console.error('Error:', error);
-            alert('An error occurred. Please try again.');
+            alert('Data submission failed. Please try again.');
           });
       });
     </script>
-
+    
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
