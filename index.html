@@ -44,6 +44,7 @@
       .form-label {
         font-weight: 500;
       }
+      /* Green (active) button style */
       .btn-accent {
         background-color: #90c358;
         border: none;
@@ -51,8 +52,9 @@
       .btn-accent:hover {
         background-color: #7cb44b;
       }
+      /* Gray (disabled) button style */
       .btn-disabled {
-        background-color: #aaa;
+        background-color: #6c757d; /* Dark gray */
         border: none;
         cursor: not-allowed;
       }
@@ -114,10 +116,24 @@
                     </ul>
                   </div>
 
-                  <!-- Register & Pay Button -->
+                  <!-- Register & Pay Buttons -->
                   <div class="d-grid mt-4">
-                    <!-- Initially disabled -->
-                    <button type="submit" id="submitButton" class="btn btn-disabled btn-lg text-white" disabled>
+                    <!-- Gray, non-clickable button (always visible) -->
+                    <button
+                      type="button"
+                      id="disabledButton"
+                      class="btn btn-disabled btn-lg text-white"
+                    >
+                      Register & Pay
+                    </button>
+                    
+                    <!-- Green, clickable button (hidden by default) -->
+                    <button
+                      type="submit"
+                      id="activeButton"
+                      class="btn btn-accent btn-lg text-white mt-2"
+                      style="display: none;"
+                    >
                       Register & Pay
                     </button>
                   </div>
@@ -131,36 +147,37 @@
 
     <!-- Client-Side JavaScript -->
     <script>
-      // Cache references to the form and required input fields
       const form = document.getElementById('registration-form');
       const teamNameInput = document.getElementById('teamName');
       const emailInput = document.getElementById('email');
-      const submitButton = document.getElementById('submitButton');
+      const disabledButton = document.getElementById('disabledButton');
+      const activeButton = document.getElementById('activeButton');
 
-      // Function to check if required fields are filled
+      // Check required fields and toggle button visibility
       function validateForm() {
         const teamName = teamNameInput.value.trim();
         const email = emailInput.value.trim();
-        // Enable the button only if both fields have values
+        
+        // If both fields have values, hide the gray button & show the green one
         if (teamName && email) {
-          submitButton.disabled = false;
-          submitButton.classList.remove('btn-disabled');
-          submitButton.classList.add('btn-accent');
+          disabledButton.style.display = 'none';
+          activeButton.style.display = 'block';
         } else {
-          submitButton.disabled = true;
-          submitButton.classList.remove('btn-accent');
-          submitButton.classList.add('btn-disabled');
+          // Otherwise, show the gray button & hide the green one
+          disabledButton.style.display = 'block';
+          activeButton.style.display = 'none';
         }
       }
 
-      // Attach input event listeners to required fields
+      // Listen for user input on required fields
       teamNameInput.addEventListener('input', validateForm);
       emailInput.addEventListener('input', validateForm);
 
+      // Handle form submission
       form.addEventListener('submit', function(e) {
         e.preventDefault(); // Prevent default form submission
         
-        // Validate required fields again as a safety net
+        // Final check in case user manipulated the DOM
         const teamName = teamNameInput.value.trim();
         const email = emailInput.value.trim();
         if (!teamName || !email) {
@@ -170,7 +187,7 @@
         
         // Prepare data to send
         const formData = {
-          source: "form", // flag to indicate registration form submission
+          source: "form",
           teamName: teamName,
           email: email,
           phone: document.getElementById('phone').value.trim(),
