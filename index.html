@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- This is the important piece for mobile responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>Padel Tournament Registration</title>
+
+    <!-- Bootstrap CSS via CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <!-- Darkened overlay for background dimming -->
+    <div class="overlay">
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <!-- Fill screen on phones, narrower on large screens -->
+          <div class="col-12 col-md-8 col-lg-6">
+            <!-- Registration Card with a fade-in animation -->
+            <div class="card registration-card">
+              <!-- Card Header -->
+              <div class="card-header text-center">
+                <h2 class="fw-bolder mb-1 text-nowrap">
+                  Peach Padel Tournament '25
+                </h2>
+                <p class="mb-0">
+                  Show your skills at our first padel tournament this year!
+                </p>
+              </div>
+
+              <!-- Card Body -->
+              <div class="card-body">
+                <form method="post" action="" name="contact-form">
+                  
+                  <!-- Email (required) -->
+                  <div class="mb-3">
+                    <label for="your-email" class="form-label">
+                      Email <span class="text-danger">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="your-email"
+                      id="your-email"
+                      class="form-control"
+                      placeholder="name@example.com"
+                      required
+                    />
+                  </div>
+
+                  <!-- Phone (optional) -->
+                  <div class="mb-3">
+                    <label for="your-phone-number" class="form-label">
+                      Phone Number
+                    </label>
+                    <input
+                      type="text"
+                      name="your-phone-number"
+                      id="your-phone-number"
+                      class="form-control"
+                      placeholder="(123) 456-7890"
+                    />
+                  </div>
+
+                  <!-- Team Name (required) -->
+                  <div class="mb-3">
+                    <label for="your-team-name" class="form-label">
+                      Team Name <span class="text-danger">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="your-team-name"
+                      id="your-team-name"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <!-- Player 1 (optional) -->
+                  <div class="mb-3">
+                    <label for="your-player1-name" class="form-label">
+                      Player 1 Name
+                    </label>
+                    <input
+                      type="text"
+                      name="your-player1-name"
+                      id="your-player1-name"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <!-- Player 2 (optional) -->
+                  <div class="mb-3">
+                    <label for="your-player2-name" class="form-label">
+                      Player 2 Name
+                    </label>
+                    <input
+                      type="text"
+                      name="your-player2-name"
+                      id="your-player2-name"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <!-- Tournament Details -->
+                  <div class="mt-4 text-black">
+                    <h5 class="fw-bold">Tournament Details</h5>
+                    <ul class="list-unstyled tournament-details">
+                      <li><strong>Date:</strong> March 8th, 2025 @ 12PM</li>
+                      <li><strong>Location:</strong> PATL, 3110 Presidential Dr, Atlanta, GA 30340</li>
+                      <li><strong>Prize Pool:</strong> $1,000</li>
+                      <li><strong>Registration Fee:</strong> $60 / person</li>
+                    </ul>
+                  </div>
+
+                  <!-- Submit Button -->
+                  <div class="mt-4 text-center">
+                    <button
+                      type="submit"
+                      id="submit"
+                      class="btn btn-accent"
+                    >
+                      Register & Pay
+                    </button>
+                  </div>
+                </form>
+              </div><!-- End Card Body -->
+            </div><!-- End registration-card -->
+          </div><!-- End col -->
+        </div><!-- End row -->
+      </div><!-- End container -->
+    </div><!-- End overlay -->
+
+    <!-- Your existing JS (unchanged) -->
+    <script src="index.js"></script>
+    <!-- Optional Bootstrap JS bundle -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    ></script>
+  </body>
+</html>
