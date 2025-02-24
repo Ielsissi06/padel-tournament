@@ -6,6 +6,6 @@ form.addEventListener('submit', e => {
     e.preventDefault()
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
     .then(response => alert("Thank you! Your form has been submitted successfully. Redirecting to payment link..." ))
-    .then(() => { window.location.href = 'https://buy.stripe.com/6oEg28fh2c1T7uMbIJ'; })
+    .then(() => { window.location.href = 'https://buy.stripe.com/28o7vCd8U8PH4iAcMO'; })
     .catch(error => console.error('Error!', error.message))
 })
